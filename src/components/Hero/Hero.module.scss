@@ -27,6 +27,12 @@
   animation: orbFloat 8s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 200px;
+    filter: blur(50px);
+  }
 }
 
 @keyframes orbFloat {
@@ -52,7 +58,48 @@
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  box-shadow: var(--shadow-lg), var(--shadow-glow-sm);
+  box-shadow:
+    var(--shadow-lg),
+    var(--shadow-glow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  // Enhanced depth with inner glow
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(194, 164, 255, 0.2) 0%,
+      rgba(34, 211, 238, 0.1) 50%,
+      rgba(168, 85, 247, 0.15) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  // Hover effect
+  transition: transform 0.4s var(--ease-out-quart), box-shadow 0.4s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.4),
+      0 0 60px rgba(194, 164, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  // Mobile optimizations
+  @media (max-width: 640px) {
+    padding: var(--space-6) var(--space-6);
+    border-radius: var(--radius-lg);
+  }
 
   @include md {
     max-width: 60%;
@@ -79,9 +126,35 @@
   font-weight: var(--font-bold);
   line-height: 0.95;
   letter-spacing: -0.035em;
-  color: var(--text-primary);
   margin: 0 0 var(--space-4) 0;
   overflow: hidden;
+
+  // Animated gradient text
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary) 0%,
+    var(--accent-secondary) 25%,
+    var(--accent-tertiary) 50%,
+    var(--accent-secondary) 75%,
+    var(--accent-primary) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease-in-out infinite;
+
+  // Subtle glow effect
+  filter: drop-shadow(0 0 30px rgba(194, 164, 255, 0.3));
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
 }
 
 .title {
@@ -115,6 +188,14 @@
   padding: 5px;
   gap: 0;
   box-shadow: var(--shadow-glow-sm);
+
+  // Mobile: stack buttons vertically
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 100%;
+    padding: 8px;
+    gap: 8px;
+  }
 }
 
 .ctaConnector {
@@ -122,6 +203,11 @@
   height: 18px;
   background: rgba(194, 164, 255, 0.15);
   flex-shrink: 0;
+
+  // Hide on mobile when stacked
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 .ctaPrimary,
@@ -135,24 +221,80 @@
   cursor: pointer;
   padding: 13px 26px;
   border-radius: var(--radius-full);
-  transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.3s;
+  transition: all 0.3s var(--ease-out-quart);
+  position: relative;
+  overflow: hidden;
+
+  // Mobile: full width when stacked
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .ctaPrimary {
   background: var(--gradient-primary);
   color: #fff;
+  box-shadow: 0 4px 16px rgba(194, 164, 255, 0.25);
+
+  // Shimmer effect overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+
   &:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 28px rgba(194, 164, 255, 0.3);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+      0 8px 24px rgba(194, 164, 255, 0.4),
+      0 0 40px rgba(194, 164, 255, 0.3);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
   }
 }
 
 .ctaSecondary {
   background: transparent;
   color: var(--text-secondary);
-  &:hover {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-full);
     background: rgba(194, 164, 255, 0.08);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
     color: var(--accent-primary);
-    transform: scale(1.03);
+    transform: translateY(-1px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }

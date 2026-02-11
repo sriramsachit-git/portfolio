@@ -25,9 +25,12 @@
 
   // Gradients
   --gradient-primary: linear-gradient(135deg, #c2a4ff 0%, #a855f7 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #d4b8ff 0%, #b971f7 100%);
   --gradient-subtle: linear-gradient(180deg, rgba(22, 20, 31, 0.9) 0%, rgba(9, 8, 13, 0.98) 100%);
   --gradient-glow: radial-gradient(circle, rgba(194, 164, 255, 0.18) 0%, transparent 70%);
   --gradient-text: linear-gradient(90deg, #c2a4ff, #22d3ee, #a855f7);
+  --gradient-card: linear-gradient(135deg, rgba(194, 164, 255, 0.05) 0%, rgba(34, 211, 238, 0.02) 100%);
+  --gradient-border: linear-gradient(135deg, rgba(194, 164, 255, 0.3), rgba(34, 211, 238, 0.2), rgba(168, 85, 247, 0.25));
 
   // Glass
   --glass-bg: rgba(22, 20, 31, 0.5);
@@ -106,8 +109,11 @@
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.45);
   --shadow-glow: 0 0 40px rgba(194, 164, 255, 0.15);
   --shadow-glow-sm: 0 0 20px rgba(194, 164, 255, 0.08);
+  --shadow-glow-lg: 0 0 60px rgba(194, 164, 255, 0.25);
+  --shadow-colored: 0 8px 24px rgba(194, 164, 255, 0.3);
 }
 
 [data-theme='light'] {
