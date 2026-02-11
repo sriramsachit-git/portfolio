@@ -27,11 +27,42 @@
 }
 
 .icon {
-  color: var(--text-disabled);
-  transition: color 0.25s, transform 0.25s;
+  color: var(--text-muted);
+  transition: all 0.3s var(--ease-out-quart);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+
+  // Background glow on hover
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-sm);
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  svg {
+    position: relative;
+    z-index: 1;
+  }
 
   &:hover {
     color: var(--accent-primary);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+
+    &::before {
+      opacity: 0.15;
+    }
+  }
+
+  &:active {
+    transform: translateY(-2px);
   }
 }

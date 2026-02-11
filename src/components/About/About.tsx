@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import { Download } from 'lucide-react';
+import { Download, Linkedin, Github } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '@/data/config';
@@ -78,6 +78,31 @@ export function About() {
           {/* Right: Bio + CTA */}
           <div ref={textRef} className={styles.textSide}>
             <p className={styles.bio}>{bio}</p>
+
+            {/* Social Links */}
+            <div className={styles.socialLinks}>
+              <a
+                href={siteConfig.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin size={20} />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialLink}
+                aria-label="GitHub Profile"
+              >
+                <Github size={20} />
+                <span>GitHub</span>
+              </a>
+            </div>
+
             <a href={siteConfig.resumeUrl} download className={styles.downloadBtn}>
               <Download size={20} />
               Download Resume
