@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 const SECTION_IDS = ['hero', 'about', 'experience', 'skills', 'projects', 'contact'];
 const SCROLL_DURATION = 1.5;
@@ -25,6 +26,10 @@ export function useSectionScroll() {
     const init = async () => {
       const Lenis = await import('lenis').then((m) => m.default);
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+
+      // Register ScrollTrigger plugin
+      gsap.registerPlugin(ScrollTrigger);
+
       lenis = new Lenis({
         lerp: 0.08,
         smoothWheel: true,
