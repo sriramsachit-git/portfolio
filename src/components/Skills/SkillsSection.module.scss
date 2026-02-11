@@ -1,0 +1,17 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.section {
+  min-height: var(--vh, 100vh);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+.container {
+  max-width: var(--container-xl);
+  margin: 0 auto;
+  width: 100%;
+}

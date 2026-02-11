@@ -1,0 +1,158 @@
+.hero {
+  position: relative;
+  min-height: var(--vh, 100vh);
+  display: flex;
+  align-items: center;
+  padding: var(--section-padding-y) var(--section-padding-x);
+  overflow: hidden;
+  width: 100%;
+  max-width: var(--cMaxWidth, 1920px);
+  margin: 0 auto;
+  background-image:
+    linear-gradient(rgba(194, 164, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 164, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.orb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 280px;
+  background-color: rgba(194, 164, 255, 0.3);
+  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.35);
+  filter: blur(70px);
+  border-radius: 50%;
+  animation: orbFloat 8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(-30%, -30%) scale(1); }
+  50%      { transform: translate(-20%, -40%) scale(1.08); }
+}
+
+.container {
+  width: var(--cWidth, 100%);
+  max-width: var(--cMaxWidth, 1920px);
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.intro {
+  position: relative;
+  z-index: 9;
+  padding: var(--space-8) var(--space-10);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: var(--shadow-lg), var(--shadow-glow-sm);
+
+  @include md {
+    max-width: 60%;
+  }
+  @include xl {
+    max-width: 50%;
+  }
+}
+
+.hello {
+  font-family: var(--font-mono);
+  font-size: clamp(0.8rem, 1.4vw, 0.95rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+  margin: 0 0 var(--space-3) 0;
+  text-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: var(--font-bold);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-4) 0;
+  overflow: hidden;
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.9rem, 1.3vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  margin: 0 0 var(--space-12) 0;
+  max-width: 36ch;
+  line-height: 1.65;
+}
+
+/* CTA pill group */
+.ctaGroup {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  background: rgba(9, 8, 13, 0.6);
+  border: 1px solid var(--glass-border);
+  padding: 5px;
+  gap: 0;
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.ctaConnector {
+  width: 1px;
+  height: 18px;
+  background: rgba(194, 164, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  padding: 13px 26px;
+  border-radius: var(--radius-full);
+  transition: background 0.25s, color 0.25s, transform 0.2s, box-shadow 0.3s;
+}
+
+.ctaPrimary {
+  background: var(--gradient-primary);
+  color: #fff;
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 28px rgba(194, 164, 255, 0.3);
+  }
+}
+
+.ctaSecondary {
+  background: transparent;
+  color: var(--text-secondary);
+  &:hover {
+    background: rgba(194, 164, 255, 0.08);
+    color: var(--accent-primary);
+    transform: scale(1.03);
+  }
+}

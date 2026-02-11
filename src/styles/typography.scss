@@ -1,0 +1,54 @@
+@use './mixins.scss' as *;
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  color: var(--text-secondary);
+  letter-spacing: 0.005em;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: var(--font-bold);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: var(--text-primary);
+  @include xs {
+    font-size: 2.5rem;
+  }
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: var(--font-semibold);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  @include xs {
+    font-size: 2rem;
+  }
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: var(--font-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  @include xs {
+    font-size: 1.5rem;
+  }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: var(--font-bold);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}

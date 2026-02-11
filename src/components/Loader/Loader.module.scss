@@ -1,0 +1,70 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+}
+
+.marqueeStrip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: var(--space-4) 0;
+}
+
+.marquee {
+  display: flex;
+}
+
+.marqueeText {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-right: var(--space-12);
+  white-space: nowrap;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.bar {
+  width: 200px;
+  height: 4px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.1s linear;
+}
+
+.percent {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.welcome {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--accent-primary);
+}
