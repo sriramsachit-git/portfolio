@@ -14,7 +14,7 @@ const Projects = lazy(() => import('@components/Projects/Projects').then((m) => 
 const Contact = lazy(() => import('@components/Contact/Contact').then((m) => ({ default: m.Contact })));
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(true); // Temporarily set to true to bypass loader
   useSectionScroll();
 
   const handleLoadComplete = () => setLoaded(true);

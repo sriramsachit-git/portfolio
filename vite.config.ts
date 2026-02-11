@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
   base: '/',
   resolve: {
@@ -18,7 +18,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@use "@/styles/variables.scss" as *; @use "@/styles/mixins.scss" as *;`,
+        additionalData: `@use "${path.resolve(__dirname, 'src/styles/variables.scss').replace(/\\/g, '/')}" as *; @use "${path.resolve(__dirname, 'src/styles/mixins.scss').replace(/\\/g, '/')}" as *;`,
+        api: 'modern-compiler',
         silenceDeprecations: ['legacy-js-api'],
       },
     },
@@ -35,4 +36,4 @@ export default defineConfig({
     },
   },
   assetsInclude: ['**/*.glb', '**/*.gltf', '**/*.hdr'],
-});
+}));
