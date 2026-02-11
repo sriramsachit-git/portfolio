@@ -1,0 +1,46 @@
+<svg width="800" height="450" xmlns="http://www.w3.org/2000/svg">
+  <!-- CLaRaBench Project Card Background -->
+  <defs>
+    <linearGradient id="clara-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b97ef7;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#f472b6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#d4b8ff;stop-opacity:0.9" />
+    </linearGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="#0a0911"/>
+
+  <!-- Gradient Overlay -->
+  <rect width="800" height="450" fill="url(#clara-gradient)" opacity="0.3"/>
+
+  <!-- Grid Pattern -->
+  <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#b97ef7" stroke-width="0.5" opacity="0.1"/>
+  </pattern>
+  <rect width="800" height="450" fill="url(#grid2)"/>
+
+  <!-- Project Icon/Symbol - Document/RAG -->
+  <g transform="translate(400, 225)" filter="url(#glow2)">
+    <!-- Document Stack -->
+    <rect x="-50" y="-45" width="100" height="90" rx="6" fill="none" stroke="#f472b6" stroke-width="3"/>
+    <line x1="-30" y1="-25" x2="30" y2="-25" stroke="#d4b8ff" stroke-width="2"/>
+    <line x1="-30" y1="-5" x2="30" y2="-5" stroke="#d4b8ff" stroke-width="2"/>
+    <line x1="-30" y1="15" x2="30" y2="15" stroke="#d4b8ff" stroke-width="2"/>
+    <!-- AI Brain Symbol -->
+    <circle cx="0" cy="0" r="12" fill="#b97ef7" opacity="0.6"/>
+  </g>
+
+  <!-- Project Title -->
+  <text x="400" y="380" font-family="'Space Grotesk', sans-serif" font-size="38" font-weight="700"
+        fill="#f5f4f9" text-anchor="middle" filter="url(#glow2)">CLaRaBench</text>
+  <text x="400" y="415" font-family="'Inter', sans-serif" font-size="18"
+        fill="#c4bfd4" text-anchor="middle">RAG for SEC Filings</text>
+</svg>
