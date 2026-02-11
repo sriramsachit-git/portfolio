@@ -71,15 +71,21 @@ body {
   margin: 0;
 }
 
-/* Full-page sections */
+/* Full-page sections - EXACTLY full screen, no more */
 .snap-section {
-  min-height: var(--vh, 100vh);
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
 }
 
 .full-page-section {
-  min-height: var(--vh, 100vh);
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
