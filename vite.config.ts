@@ -27,10 +27,21 @@ export default defineConfig(({ command }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
-          'animation-vendor': ['gsap'],
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('three') || id.includes('@react-three')) {
+              return 'three-vendor';
+            }
+            if (id.includes('gsap')) {
+              return 'animation-vendor';
+            }
+            if (id.includes('lenis')) {
+              return 'lenis-vendor';
+            }
+          }
         },
       },
     },
