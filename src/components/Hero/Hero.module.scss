@@ -8,30 +8,63 @@
   width: 100%;
   max-width: var(--cMaxWidth, 1920px);
   margin: 0 auto;
-  background-image:
-    linear-gradient(rgba(194, 164, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(194, 164, 255, 0.025) 1px, transparent 1px);
-  background-size: 56px 56px;
+
+  // Multi-layered background with depth
+  background:
+    // Grid overlay
+    linear-gradient(rgba(194, 164, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(194, 164, 255, 0.04) 1px, transparent 1px),
+    // Radial gradient for depth
+    radial-gradient(ellipse at top left, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(34, 211, 238, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at center, rgba(194, 164, 255, 0.08) 0%, transparent 70%),
+    // Base dark gradient
+    linear-gradient(180deg, #0a0911 0%, #09080d 100%);
+  background-size: 56px 56px, 56px 56px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0, top left, bottom right, center, center;
+
+  // Animated grain texture for richness
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+  }
 }
 
 .orb {
   position: fixed;
   top: 0;
   left: 0;
-  width: 280px;
-  height: 280px;
-  background-color: rgba(194, 164, 255, 0.3);
-  box-shadow: inset -50px 40px 50px rgba(84, 0, 255, 0.35);
-  filter: blur(70px);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(212, 184, 255, 0.4) 0%, rgba(185, 126, 247, 0.25) 40%, transparent 70%);
+  box-shadow:
+    inset -50px 40px 80px rgba(168, 85, 247, 0.4),
+    0 0 100px rgba(212, 184, 255, 0.3);
+  filter: blur(80px);
   border-radius: 50%;
-  animation: orbFloat 8s ease-in-out infinite;
+  animation: orbFloat 10s ease-in-out infinite, orbPulse 6s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
+  opacity: 0.7;
 
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
-    filter: blur(50px);
+    width: 220px;
+    height: 220px;
+    filter: blur(60px);
+  }
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 0.9;
   }
 }
 
@@ -112,12 +145,24 @@
 .hello {
   font-family: var(--font-mono);
   font-size: clamp(0.8rem, 1.4vw, 0.95rem);
-  font-weight: 400;
-  letter-spacing: 0.3em;
+  font-weight: 500;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--accent-secondary);
   margin: 0 0 var(--space-3) 0;
-  text-shadow: 0 0 24px rgba(34, 211, 238, 0.2);
+  text-shadow: 0 0 32px rgba(34, 211, 238, 0.4), 0 0 16px rgba(34, 211, 238, 0.3);
+
+  // Subtle glow animation
+  animation: textGlow 3s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 32px rgba(34, 211, 238, 0.4), 0 0 16px rgba(34, 211, 238, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 40px rgba(34, 211, 238, 0.6), 0 0 20px rgba(34, 211, 238, 0.5);
+  }
 }
 
 .name {
@@ -160,22 +205,27 @@
 .title {
   font-family: var(--font-mono);
   font-size: clamp(0.9rem, 1.3vw, 1.1rem);
-  font-weight: 400;
-  letter-spacing: 0.08em;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  background: linear-gradient(90deg, var(--text-primary), var(--accent-primary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   margin: 0 0 var(--space-2) 0;
+  text-shadow: 0 0 20px rgba(212, 184, 255, 0.2);
 }
 
 .tagline {
   font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
   font-weight: 400;
   letter-spacing: 0.02em;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin: 0 0 var(--space-12) 0;
-  max-width: 36ch;
-  line-height: 1.65;
+  max-width: 40ch;
+  line-height: 1.75;
+  opacity: 0.95;
 }
 
 /* CTA pill group */
